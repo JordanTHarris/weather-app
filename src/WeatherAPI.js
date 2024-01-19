@@ -14,6 +14,7 @@ class WeatherAPI {
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
+
         const weatherData = new WeatherData();
         weatherData.country = data.location.country;
         weatherData.name = data.location.name;
@@ -24,7 +25,14 @@ class WeatherAPI {
         weatherData.feelsLikeC = data.current.feelslike_c;
         weatherData.humidity = data.current.humidity;
         weatherData.windMPH = data.current.wind_mph;
-        weatherData.localTime = new Date(data.location.localtime_epoch * 1000);
+        weatherData.localTime = new Date(data.location.localtime).toLocaleString('en-GB', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+        });
+
         return weatherData;
       } else {
         console.error('Error:', response.status);
@@ -34,6 +42,10 @@ class WeatherAPI {
       console.error('Error:', error);
       return null;
     }
+  }
+
+  async getCurrentWeatherByCoords(latitude, longitude) {
+    return this.getCurrentWeather(`${latitude},${longitude}`);
   }
 }
 
