@@ -61,6 +61,8 @@ function setLabelsVisible(visible = true) {
 }
 
 function displayCurrentLocationWeather() {
+  const locationText = document.querySelector('#location');
+
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(async (position) => {
       displayLoading(true);
@@ -71,6 +73,8 @@ function displayCurrentLocationWeather() {
       displayLoading(false);
       displayWeather(weatherData);
     });
+  } else {
+    locationText.textContent = 'No GeoLocation';
   }
 }
 
