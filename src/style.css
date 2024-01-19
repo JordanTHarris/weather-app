@@ -54,6 +54,7 @@ body {
   color: white;
   font-size: 1.1em;
   margin-top: 40px;
+  position: relative;
 }
 
 .info {

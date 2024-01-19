@@ -1,6 +1,7 @@
 import { WeatherAPI } from './WeatherAPI.js';
 import { WeatherData } from './WeatherData.js';
 import './style.css';
+import './loading.css';
 // import Icon from './icon.png';
 
 const weather = new WeatherAPI();
@@ -12,7 +13,10 @@ async function initliaze() {
 
   form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
+    displayLoading(true);
     weatherData = await weather.getCurrentWeather(searchInput.value);
+    displayLoading(false);
+
     if (weatherData) {
       displayWeather(weatherData);
     } else {
@@ -44,6 +48,11 @@ function displayWeather(data) {
   setLabelsVisible(true);
 }
 
+function displayLoading(isLoading) {
+  const loadingContainer = document.querySelector('#loading-container');
+  loadingContainer.style.visibility = isLoading ? 'visible' : 'hidden';
+}
+
 function setLabelsVisible(visible = true) {
   const visibility = visible ? 'visible' : 'hidden';
   for (const element of document.querySelectorAll('.weather-label')) {
@@ -54,7 +63,9 @@ function setLabelsVisible(visible = true) {
 function displayCurrentLocationWeather() {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(async (position) => {
+      displayLoading(true);
       const weatherData = await weather.getCurrentWeatherByCoords(position.coords.latitude, position.coords.longitude);
+      displayLoading(false);
       displayWeather(weatherData);
     });
   }
