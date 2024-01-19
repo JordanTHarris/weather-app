@@ -26,7 +26,7 @@ async function initliaze() {
   displayCurrentLocationWeather();
 }
 
-function displayWeather(weatherData) {
+function displayWeather(data) {
   const locationText = document.querySelector('#location');
   const dateText = document.querySelector('#date');
   const temperatureText = document.querySelector('#temperature');
@@ -34,12 +34,12 @@ function displayWeather(weatherData) {
   const humidityText = document.querySelector('#humidity');
   const windText = document.querySelector('#wind');
 
-  locationText.textContent = `${weatherData.name}, ${weatherData.region}`;
-  dateText.textContent = weatherData.localTime;
-  temperatureText.textContent = `${weatherData.temperatureF}°F`;
-  feelsLikeText.textContent = `${weatherData.feelsLikeF}°F`;
-  humidityText.textContent = `${weatherData.humidity}%`;
-  windText.textContent = `${weatherData.windMPH} mph`;
+  locationText.textContent = `${data.name}, ${data.region}`;
+  dateText.textContent = data.localTime;
+  temperatureText.textContent = `${data.temperatureF}°F`;
+  feelsLikeText.textContent = `${data.feelsLikeF}°F`;
+  humidityText.textContent = `${data.humidity}%`;
+  windText.textContent = `${data.windMPH} mph`;
 
   setLabelsVisible(true);
 }
