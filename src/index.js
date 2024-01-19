@@ -64,7 +64,10 @@ function displayCurrentLocationWeather() {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(async (position) => {
       displayLoading(true);
-      const weatherData = await weather.getCurrentWeatherByCoords(position.coords.latitude, position.coords.longitude);
+      const weatherData = await weather.getCurrentWeatherByCoords(
+        position.coords.latitude,
+        position.coords.longitude
+      );
       displayLoading(false);
       displayWeather(weatherData);
     });

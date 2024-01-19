@@ -1,5 +1,16 @@
 class WeatherData {
-  constructor(country, name, region, temperatureF, temperatureC, feelsLikeF, feelsLikeC, humidity, windMPH, localTime) {
+  constructor(
+    country,
+    name,
+    region,
+    temperatureF,
+    temperatureC,
+    feelsLikeF,
+    feelsLikeC,
+    humidity,
+    windMPH,
+    localTime
+  ) {
     this.country = country;
     this.name = name;
     this.region = region;
