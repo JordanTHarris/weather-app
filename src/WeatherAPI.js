@@ -25,7 +25,7 @@ class WeatherAPI {
         weatherData.feelsLikeC = data.current.feelslike_c;
         weatherData.humidity = data.current.humidity;
         weatherData.windMPH = data.current.wind_mph;
-        weatherData.localTime = new Date(data.location.localtime).toLocaleString('en-GB', {
+        weatherData.localTime = new Date(data.location.localtime_epoch * 1000).toLocaleString('en-US', {
           day: 'numeric',
           month: 'short',
           year: 'numeric',
