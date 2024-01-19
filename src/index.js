@@ -7,7 +7,7 @@ import './loading.css';
 const weather = new WeatherAPI();
 let weatherData = new WeatherData();
 
-async function initliaze() {
+function initialize() {
   const form = document.querySelector('#search-form');
   const searchInput = document.querySelector('#search-input');
 
@@ -74,4 +74,4 @@ function displayCurrentLocationWeather() {
   }
 }
 
-initliaze();
+initialize();
