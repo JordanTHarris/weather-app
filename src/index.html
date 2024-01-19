@@ -5,5 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <form id="search-form">
+        <label for="search" id="search-label">Search:</label>
+        <input name="search" type="text" id="search-input" autocomplete="off" autofocus />
+        <button type="submit" id="submit-btn">Submit</button>
+      </form>
+
+      <div id="weather-container">
+        <h2 id="city"></h2>
+        <p id="date"></p>
+        <p id="temperature"></p>
+        <p id="feels-like"></p>
+        <p id="humidity"></p>
+        <p id="wind"></p>
+      </div>
+    </div>
+  </body>
 </html>

@@ -1,4 +1,30 @@
-.hello {
-  color: red;
-  /* background: url(./icon.png); */
+body * {
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#search-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#search-label {
+  font-size: 1.2em;
+  /* color: white; */
+}
+
+#search-input {
+  font-size: 1.2em;
+}
+
+#submit-btn {
+  font-size: 1.2em;
 }
