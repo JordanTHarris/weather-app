@@ -48,8 +48,10 @@ function displayWeather(data) {
   setLabelsVisible(true);
 }
 
-function displayLoading(isLoading) {
+function displayLoading(isLoading, text = 'Loading') {
   const loadingContainer = document.querySelector('#loading-container');
+  const loadingText = document.querySelector('#loading-ring');
+  loadingText.textContent = text;
   loadingContainer.style.visibility = isLoading ? 'visible' : 'hidden';
 }
 
@@ -60,29 +62,21 @@ function setLabelsVisible(visible = true) {
   }
 }
 
-function displayCurrentLocationWeather() {
-  const locationText = document.querySelector('#location');
-
-  if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        displayLoading(true);
-        const weatherData = await weather.getCurrentWeatherByCoords(
-          position.coords.latitude,
-          position.coords.longitude
-        );
-        displayLoading(false);
-        displayWeather(weatherData);
-      },
-      (error) => {
-        console.log(error);
-        displayLoading(false);
-        locationText.textContent = 'No GeoLocation';
-      }
+async function displayCurrentLocationWeather() {
+  try {
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+    displayLoading(true);
+    const weatherData = await weather.getCurrentWeatherByCoords(
+      position.coords.latitude,
+      position.coords.longitude
     );
-  } else {
     displayLoading(false);
-    locationText.textContent = 'No GeoLocation';
+    displayWeather(weatherData);
+  } catch (error) {
+    console.log(error);
+    displayLoading(true, 'No Geo');
   }
 }
 
