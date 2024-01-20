@@ -64,16 +64,24 @@ function displayCurrentLocationWeather() {
   const locationText = document.querySelector('#location');
 
   if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      displayLoading(true);
-      const weatherData = await weather.getCurrentWeatherByCoords(
-        position.coords.latitude,
-        position.coords.longitude
-      );
-      displayLoading(false);
-      displayWeather(weatherData);
-    });
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        displayLoading(true);
+        const weatherData = await weather.getCurrentWeatherByCoords(
+          position.coords.latitude,
+          position.coords.longitude
+        );
+        displayLoading(false);
+        displayWeather(weatherData);
+      },
+      (error) => {
+        console.log(error);
+        displayLoading(false);
+        locationText.textContent = 'No GeoLocation';
+      }
+    );
   } else {
+    displayLoading(false);
     locationText.textContent = 'No GeoLocation';
   }
 }
